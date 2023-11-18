@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TronDuel", "TronDuel.csproj", "{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B49017AC-C8E3-4FB2-84E9-AEAE267BC6FE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B63DB1A3-86B4-4A14-9210-DF61D4B2E8FD}
+	EndGlobalSection
+EndGlobal

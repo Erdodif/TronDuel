@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TronDuel.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:TronDuel.View"
+    Shell.FlyoutBehavior="Disabled"
+    Title="TronDuel"
+    FlyoutBackgroundColor="{x:StaticResource Tertiary}">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate view:Greeter}"
+        Route="Greeter"
+        />
+
+</Shell>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TronDuel.View.Greeter"
+             Shell.NavBarIsVisible="False"
+             Background="{x:StaticResource Tertiary}"
+             >
+    <StackLayout Background="{x:StaticResource Tertiary}" Orientation="Horizontal" HorizontalOptions="Center">
+        <Grid HorizontalOptions="Center" Grid.Row="1" Margin="{OnPlatform WinUI='0,100',Android='10,10,10,10'}" MinimumWidthRequest="{OnPlatform WinUI=300}">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="{OnPlatform WinUI=3*, Android=*}" />
+                <RowDefinition  Height="{OnPlatform WinUI=4*, Android=3*}" />
+            </Grid.RowDefinitions>
+            <Label Text="Tron Duel" FontSize="48" Grid.Row="0" FontAttributes="Bold" TextColor="{x:StaticResource Secondary}" VerticalOptions="Center" HorizontalOptions="Center" FontAutoScalingEnabled="True" Margin="10"/>
+            <Image Source="motor.png" Aspect="AspectFit" Grid.Row="1" />
+        </Grid>
+        <Grid HeightRequest="{OnPlatform WinUI=200}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{OnPlatform WinUI=10*,Android=4*}"/>
+                <RowDefinition Height="{OnPlatform WinUI=*,Android=3*}"/>
+                <RowDefinition Height="{OnPlatform WinUI=2*,Android=1*}"/>
+                <RowDefinition Height="{OnPlatform WinUI=*,Android=3*}"/>
+                <RowDefinition Height="{OnPlatform WinUI=10*,Android=4*}"/>
+            </Grid.RowDefinitions>
+            <Button Text="Play" HorizontalOptions="Center" Padding="35,0" FontSize="Title" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="1" Margin="10" Clicked="ToGame"/>
+            <Button Text="Load Save" HorizontalOptions="Center" Padding="35,0" FontSize="Title" Command="{Binding}" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="3" Margin="10"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>
