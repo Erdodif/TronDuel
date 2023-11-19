@@ -1,4 +1,6 @@
-﻿namespace TronDuel
+﻿using TronDuel.View;
+
+namespace TronDuel
 {
     public partial class AppShell : Shell
     {
@@ -6,6 +8,7 @@
         {
             InitializeComponent();
             _ = GoToAsync("//Greeter");
+            Routing.RegisterRoute(nameof(Game), typeof(Game));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
 using TronDuel.View;
+using TronDuel.ViewModel;
 
 namespace TronDuel
 {
@@ -30,21 +31,24 @@ namespace TronDuel
 
         private static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
         {
-            _ = mauiAppBuilder.Services.AddSingleton<AppShell>();
+            //_ = mauiAppBuilder.Services.AddTransient<Item>();
             return mauiAppBuilder;
         }
 
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
-            //_ = mauiAppBuilder.Services.AddTransient<>();
+            _ = mauiAppBuilder.Services.AddTransient<Game>();
+            _ = mauiAppBuilder.Services.AddTransient<GameSetupViewModel>();
 
             return mauiAppBuilder;
         }
 
         private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
-            _ = mauiAppBuilder.Services.AddTransient<Greeter>();
+            //_ = mauiAppBuilder.Services.AddTransient<Item>();
 
+            _ = mauiAppBuilder.Services.AddSingleton<AppShell>();
+            _ = mauiAppBuilder.Services.AddTransient<Greeter>();
             return mauiAppBuilder;
         }
 

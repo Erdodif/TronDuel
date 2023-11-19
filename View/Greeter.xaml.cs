@@ -1,14 +1,13 @@
+using TronDuel.ViewModel;
+
 namespace TronDuel.View;
 
 public partial class Greeter : ContentPage
 {
-	public Greeter()
+	public Greeter(GameSetupViewModel vm)
 	{
 		InitializeComponent();
+		BindingContext = vm;
 	}
 
-    private void ToGame(object sender, EventArgs e)
-    {
-
-    }
 }
