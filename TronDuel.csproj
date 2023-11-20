@@ -45,6 +45,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Tests\**" />
+	  <Compile Remove="Tests\**" />
+	  <EmbeddedResource Remove="Tests\**" />
+	  <MauiCss Remove="Tests\**" />
+	  <MauiXaml Remove="Tests\**" />
+	  <None Remove="Tests\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\arrow_blue_left.png" />
 	  <None Remove="Resources\Images\arrow_blue_left_80.png" />
 	  <None Remove="Resources\Images\arrow_blue_pause.png" />
