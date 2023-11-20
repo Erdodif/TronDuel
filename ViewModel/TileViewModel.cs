@@ -45,6 +45,10 @@ public partial class TileViewModel(ITile tile, int x, int y) : ObservableObject
             {
                 return Color.FromRgb(pw.Player.Color.R, pw.Player.Color.G, pw.Player.Color.B);
             }
+            if(Tile is DeadPlayer)
+            {
+                return Colors.Red;
+            }
             return Colors.Transparent;
         }
     }

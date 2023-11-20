@@ -45,8 +45,8 @@ namespace TronDuel
         private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
             _ = mauiAppBuilder.Services.AddSingleton<AppShell>();
-            _ = mauiAppBuilder.Services.AddTransient<Greeter>();
-            _ = mauiAppBuilder.Services.AddTransient<Game>();
+            _ = mauiAppBuilder.Services.AddSingleton<Greeter>();
+            _ = mauiAppBuilder.Services.AddSingleton<Game>();
             return mauiAppBuilder;
         }
 

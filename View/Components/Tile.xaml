@@ -4,7 +4,7 @@
              x:Class="TronDuel.View.Components.Tile"
              xmlns:viewmodel="clr-namespace:TronDuel.ViewModel"
              x:DataType="{x:Type viewmodel:TileViewModel}">
-    <Border Stroke="{Binding BorderColor}" Background="{Binding BackgroundColor}">
+    <Border Stroke="{Binding BorderColor}" Background="{Binding BackgroundColor}" StrokeThickness="2">
         <Image IsVisible="{Binding Visible}" Source="motor.png" Rotation="{Binding Angle}"/>
     </Border>
 </ContentView>
