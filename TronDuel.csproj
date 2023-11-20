@@ -15,7 +15,7 @@
 		<ApplicationTitle>TronDuel</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.tronduel</ApplicationId>
+		<ApplicationId>com.erdodif.tronduel</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -24,7 +24,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-	</PropertyGroup>
+  </PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -45,18 +45,44 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\arrow_blue_left.png" />
+	  <None Remove="Resources\Images\arrow_blue_left_80.png" />
+	  <None Remove="Resources\Images\arrow_blue_pause.png" />
+	  <None Remove="Resources\Images\arrow_blue_pause_80.png" />
+	  <None Remove="Resources\Images\arrow_blue_right.png" />
+	  <None Remove="Resources\Images\arrow_blue_right_80.png" />
+	  <None Remove="Resources\Images\arrow_red_left.png" />
+	  <None Remove="Resources\Images\arrow_red_left_80.png" />
+	  <None Remove="Resources\Images\arrow_red_pause.png" />
+	  <None Remove="Resources\Images\arrow_red_pause_80.png" />
+	  <None Remove="Resources\Images\arrow_red_right.png" />
+	  <None Remove="Resources\Images\arrow_red_right_80.png" />
+	  <None Remove="Resources\Images\blue_empty.png" />
+	  <None Remove="Resources\Images\blue_empty_80.png" />
+	  <None Remove="Resources\Images\red_empty.png" />
+	  <None Remove="Resources\Images\red_empty_80.png" />
+	</ItemGroup>
+
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
-
+  
 	<ItemGroup>
 	  <Folder Include="Model\" />
-	  <Folder Include="View\Components\" />
+    <Folder Include="View\Components\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\Components\Map.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Components\Tile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\Game.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
