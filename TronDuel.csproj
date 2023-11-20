@@ -82,10 +82,12 @@
   
 	<ItemGroup>
 	  <Folder Include="Model\" />
-    <Folder Include="View\Components\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\Components\GameControls.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\Components\Map.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

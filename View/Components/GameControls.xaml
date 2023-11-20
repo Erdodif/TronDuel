@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TronDuel.View.Components.GameControls"
+             xmlns:viewmodel="clr-namespace:TronDuel.ViewModel"
+             x:DataType="{x:Type viewmodel:GameViewModel}">
+    <Grid WidthRequest="{Binding Height,Source={x:RelativeSource Mode=Self}}" RowDefinitions="3*,10*,2*,*">
+        <Label 
+            Text="Game Paused"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            TextColor="{StaticResource Secondary}"
+            FontSize="36"
+            Grid.Row="0"/>
+        <Label
+            Text="{Binding CountDown}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            TextColor="{StaticResource Secondary}"
+            FontSize="80"
+            Grid.Row="1"
+            IsVisible="{Binding CountDownOn}"/>
+        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
+            <Button Text="Load" Grid.Column="1" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}"/>
+            <Button
+            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentView>

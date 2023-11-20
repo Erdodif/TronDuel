@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 
 using TronLightCycle.GameObjects;
 using TronLightCycle.GameObjects.BoardElements;
@@ -7,11 +8,28 @@ namespace TronDuel.ViewModel;
 
 public partial class TileViewModel(ITile tile, int x, int y) : ObservableObject
 {
-    public int X { get; private set; } = x;
+    [ObservableProperty]
+    private int x = x;
 
-    public int Y { get; private set; } = y;
+    [ObservableProperty]
+    private int y = y;
 
-    public ITile Tile { get; set; } = tile;
+    private ITile tile = tile;
+    public ITile Tile
+    {
+        get => tile; 
+        set
+        {
+            if (tile != value)
+            {
+                SetProperty(ref tile, value);
+                OnPropertyChanged(nameof(BackgroundColor));
+                OnPropertyChanged(nameof(BorderColor));
+                OnPropertyChanged(nameof(Angle));
+                OnPropertyChanged(nameof(Visible));
+            }
+        }
+    }
 
     public bool Visible => Tile is TrailBike;
 
@@ -51,5 +69,5 @@ public partial class TileViewModel(ITile tile, int x, int y) : ObservableObject
         }
     }
 
-    public int Angle => (Tile is TrailBike bike) ? Directions.AngleOf(bike.Direction) : 0;
+    public int Angle => (tile is TrailBike bike) ? Directions.AngleOf(bike.Direction) : 0;
 }

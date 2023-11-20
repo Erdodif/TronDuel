@@ -7,11 +7,11 @@
              xmlns:components="clr-namespace:TronDuel.View.Components"
              x:DataType="{x:Type viewmodel:MapViewModel}"
              Background="{StaticResource Black}">
-    <Border Stroke="{StaticResource Gray600}" StrokeThickness="3">
-        <Grid RowDefinitions="{Binding Rows}" ColumnDefinitions="{Binding Columns}" BindableLayout.ItemsSource="{Binding FlatMap}" Background="{StaticResource SecondaryDarkText}" WidthRequest="{Binding Height,Source={x:RelativeSource Mode=Self}}" >
+    <Border Stroke="{StaticResource Gray600}" StrokeThickness="3" WidthRequest="{Binding Height,Source={x:RelativeSource Mode=Self}}">
+        <Grid RowDefinitions="{Binding Rows}" ColumnDefinitions="{Binding Columns}" BindableLayout.ItemsSource="{Binding FlatMap}" Background="{StaticResource SecondaryDarkText}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type viewmodel:TileViewModel}">
-                    <components:Tile Grid.Row="{Binding Y}" Grid.Column="{Binding X}" BindingContext="{Binding}"/>
+                    <components:Tile Grid.Row="{Binding Y}" Grid.Column="{Binding X}" BindingContext="{Binding}" x:DataType="{x:Type viewmodel:TileViewModel}"/>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </Grid>
