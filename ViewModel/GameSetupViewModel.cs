@@ -7,13 +7,10 @@ namespace TronDuel.ViewModel;
 
 public partial class GameSetupViewModel : ObservableObject
 {
-    /*
-    Command toGameCommand;
-    public Command ToGameCommand => toGameCommand ??= new Command(() => Shell.Current.GoToAsync(nameof(Game)));*/
 
     [RelayCommand]
-    public async Task ToGame()
+    public async Task ToGame12x12()
     {
-        await Shell.Current.GoToAsync(nameof(Game),true);
+        await Shell.Current.GoToAsync("//Game", true);
     }
 }

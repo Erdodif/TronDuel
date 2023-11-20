@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TronDuel.View.Components.Map"
+             Title="Map"
+             xmlns:viewmodel="clr-namespace:TronDuel.ViewModel"
+             xmlns:components="clr-namespace:TronDuel.View.Components"
+             x:DataType="{x:Type viewmodel:MapViewModel}"
+             Background="{StaticResource Black}">
+    <Border Stroke="{StaticResource Gray600}" StrokeThickness="3">
+        <Grid RowDefinitions="{Binding Rows}" ColumnDefinitions="{Binding Columns}" BindableLayout.ItemsSource="{Binding FlatMap}" Background="{StaticResource SecondaryDarkText}" WidthRequest="{Binding Height,Source={x:RelativeSource Mode=Self}}" >
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type viewmodel:TileViewModel}">
+                    <components:Tile Grid.Row="{Binding Y}" Grid.Column="{Binding X}" BindingContext="{Binding}"/>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </Grid>
+    </Border>
+</ContentPage>

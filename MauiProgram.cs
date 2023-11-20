@@ -37,8 +37,8 @@ namespace TronDuel
 
         private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
         {
-            _ = mauiAppBuilder.Services.AddTransient<Game>();
             _ = mauiAppBuilder.Services.AddTransient<GameSetupViewModel>();
+            _ = mauiAppBuilder.Services.AddTransient<GameViewModel>();
 
             return mauiAppBuilder;
         }
@@ -49,6 +49,7 @@ namespace TronDuel
 
             _ = mauiAppBuilder.Services.AddSingleton<AppShell>();
             _ = mauiAppBuilder.Services.AddTransient<Greeter>();
+            _ = mauiAppBuilder.Services.AddTransient<Game>();
             return mauiAppBuilder;
         }
 

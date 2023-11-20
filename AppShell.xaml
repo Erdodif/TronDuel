@@ -6,12 +6,19 @@
     xmlns:view="clr-namespace:TronDuel.View"
     Shell.FlyoutBehavior="Disabled"
     Title="TronDuel"
-    FlyoutBackgroundColor="{x:StaticResource Tertiary}">
+    FlyoutBackgroundColor="{x:StaticResource Tertiary}"
+    Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate view:Greeter}"
         Route="Greeter"
+        />
+
+    <ShellContent
+        Title="Game"
+        ContentTemplate="{DataTemplate view:Game}"
+        Route="Game"
         />
 
 </Shell>

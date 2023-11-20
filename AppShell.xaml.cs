@@ -8,7 +8,6 @@ namespace TronDuel
         {
             InitializeComponent();
             _ = GoToAsync("//Greeter");
-            Routing.RegisterRoute(nameof(Game), typeof(Game));
         }
     }
 }

@@ -2,11 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TronDuel.View.Game"
-             Title="Game">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:components="clr-namespace:TronDuel.View.Components"
+             xmlns:viewmodel="clr-namespace:TronDuel.ViewModel"
+             x:DataType="{x:Type viewmodel:GameViewModel}"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             Background="{StaticResource SecondaryDarkText}"
+             >
+    <Grid ColumnDefinitions="100,*,100" RowDefinitions="*,80,*,80,*,80,*">
+        <ImageButton Grid.Column="0" Grid.Row="1" Source="arrow_red_left_80.png" Rotation="90"/>
+        <ImageButton Grid.Column="0" Grid.Row="3" Source="arrow_red_pause_80.png" Rotation="90"/>
+        <ImageButton Grid.Column="0" Grid.Row="5" Source="arrow_red_right_80.png" Rotation="90"/>
+        <components:Map Grid.Column="1" Grid.Row="0" Grid.RowSpan="7" BindingContext="{Binding MapViewModel}" />
+        <ImageButton Grid.Column="2" Grid.Row="1" Source="arrow_blue_left_80.png" Rotation="90"/>
+        <ImageButton Grid.Column="2" Grid.Row="3" Source="arrow_blue_pause_80.png" Rotation="90"/>
+        <ImageButton Grid.Column="2" Grid.Row="5" Source="arrow_blue_right_80.png" Rotation="90"/>
+    </Grid>
 </ContentPage>
