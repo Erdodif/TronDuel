@@ -1,13 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-
-using TronLightCycle.GameObjects.BoardElements;
-
-using static Android.InputMethodServices.Keyboard;
 
 using Map = TronLightCycle.GameObjects.BoardElements.Map;
 
@@ -62,33 +55,6 @@ public class MapViewModel : ObservableObject
             }
         });
     }
-    /*
-    public async Task SyncMap(Map map)
-    {
-        if (Height != map.Height || Width != map.Width)
-        {
-            Height = map.Height;
-            Width = map.Width;
-            FlatMap.Clear();
-            for (int y = 0; y < Height; y++)
-            {
-                for (int x = 0; x < Width; x++)
-                {
-                    FlatMap.Add(new(map[y, x], x, y));
-                }
-            }
-            OnPropertyChanged();
-            return;
-        }
-        for (int y = 0; y < map.Height; y++)
-        {
-            for (int x = 0; x < map.Width; x++)
-            {
-                FlatMap[(y * Width) + x].Tile = map[y, x];
-            }
-        }
-        OnPropertyChanged();
-    }*/
     #endregion
 }
 
