@@ -82,6 +82,7 @@
   
 	<ItemGroup>
 	  <Folder Include="Model\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -7,6 +7,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 using TronLightCycle.GameObjects.BoardElements;
 
+using static Android.InputMethodServices.Keyboard;
+
 using Map = TronLightCycle.GameObjects.BoardElements.Map;
 
 namespace TronDuel.ViewModel;
@@ -29,8 +31,8 @@ public class MapViewModel : ObservableObject
         FlatMap = InitMap(map);
         Columns = new();
         Rows = new();
-        for (int y = 0; y < map.Height; y++) Columns.Add(new(GridLength.Star)); 
-        for (int y = 0; y < map.Width; y++) Rows.Add(new(GridLength.Star)); 
+        for (int y = 0; y < map.Height; y++) Columns.Add(new(GridLength.Star));
+        for (int y = 0; y < map.Width; y++) Rows.Add(new(GridLength.Star));
     }
     #endregion
 
@@ -60,11 +62,24 @@ public class MapViewModel : ObservableObject
             }
         });
     }
-
-    public void SyncMap(Map map)
+    /*
+    public async Task SyncMap(Map map)
     {
-        Height = map.Height;
-        Width = map.Width;
+        if (Height != map.Height || Width != map.Width)
+        {
+            Height = map.Height;
+            Width = map.Width;
+            FlatMap.Clear();
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    FlatMap.Add(new(map[y, x], x, y));
+                }
+            }
+            OnPropertyChanged();
+            return;
+        }
         for (int y = 0; y < map.Height; y++)
         {
             for (int x = 0; x < map.Width; x++)
@@ -73,7 +88,7 @@ public class MapViewModel : ObservableObject
             }
         }
         OnPropertyChanged();
-    }
+    }*/
     #endregion
 }
 

@@ -63,6 +63,35 @@ public partial class GameViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void Shuffle()
+    {
+        if (game.State == GameState.Ongoing) return;
+        this.game.ResetGame();
+        Paused = true;
+        MoveButtonsAvailable = false;
+    }
+    
+    
+    //OBSOLETE
+    [RelayCommand]
+    private async Task Resize(MapSize mapSize)
+    {
+        if (game.State == GameState.Ongoing) return;
+        await Task.Run(() =>
+        {
+            this.game.Resize((int)mapSize);
+            MapViewModel = new MapViewModel(game.Map);
+            OnPropertyChanged(nameof(MapViewModel));
+        });
+        Application.Current!.Dispatcher.Dispatch(() =>
+        {
+            Paused = true;
+            MoveButtonsAvailable = false;
+        });
+    }
+
+
+    [RelayCommand]
     private void TP1L() => game.PrepareTurnPlayer(game.Players[0], TurnDirection.Left);
     [RelayCommand]
     private void TP1R() => game.PrepareTurnPlayer(game.Players[0], TurnDirection.Right);
@@ -73,10 +102,13 @@ public partial class GameViewModel : ObservableObject
     #endregion
 
     #region Game Events
-    private async Task GameUpdated(Map map, HashSet<(int, int)> heatmap)
+    private void GameUpdated(Map map, HashSet<(int, int)> heatmap)
     {
-        await MapViewModel.SyncHeatMap(map, heatmap);
-        OnPropertyChanged(nameof(MapViewModel));
+        _ = Task.Run(async () =>
+        {
+            await MapViewModel.SyncHeatMap(map, heatmap);
+            OnPropertyChanged(nameof(MapViewModel));
+        });
     }
 
     private void GameEnded(Player? player)
@@ -109,7 +141,7 @@ public partial class GameViewModel : ObservableObject
         Player.ClearPlayerList();
         game = new Game((int)mapSize, 800, new Player("Blue", Color.BlueViolet), new Player("Red", Color.IndianRed));
         mapViewModel = new MapViewModel(game.Map);
-        game.UpdateEvent += (m, hm) => _ = GameUpdated(m, hm);
+        game.UpdateEvent += GameUpdated;
         game.EndEvent += GameEnded;
     }
 

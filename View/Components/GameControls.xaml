@@ -21,9 +21,11 @@
             Grid.Row="1"
             IsVisible="{Binding CountDownOn}"/>
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
-            <Button Text="Load" Grid.Column="1" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}"/>
+            <Button Text="Load" Grid.Column="1" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}"/>
             <Button
-            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
+            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
+            <Button
+            Grid.Row="4" Text="Shake" Command="{Binding ShuffleCommand}" IsVisible="{Binding Loadable}" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentView>

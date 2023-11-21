@@ -16,9 +16,9 @@
         <ImageButton Grid.Column="0" Grid.Row="5" Source="arrow_red_right_80.png" Rotation="90" IsVisible="{Binding MoveButtonsAvailable}" Command="{Binding TP2RCommand}"/>
         <components:Map Grid.Column="1" Grid.Row="0" Grid.RowSpan="7" BindingContext="{Binding MapViewModel}" />
         <components:GameControls Grid.Column="1" Grid.Row="0" Grid.RowSpan="7"  IsVisible="{Binding Paused}" BindingContext="{Binding}" />
-        <ImageButton Grid.Column="2" Grid.Row="1" Source="arrow_blue_left_80.png" Rotation="90" IsVisible="{Binding MoveButtonsAvailable}" Command="{Binding TP1LCommand}"/>
+        <ImageButton Grid.Column="2" Grid.Row="1" Source="arrow_blue_right_80.png" Rotation="-90" IsVisible="{Binding MoveButtonsAvailable}" Command="{Binding TP1RCommand}"/>
         <ImageButton Grid.Column="2" Grid.Row="3" Source="arrow_blue_pause_80.png" Rotation="90" IsVisible="{Binding MoveButtonsAvailable}" Command="{Binding PauseCommand}"/>
         <ImageButton Grid.Column="2" Grid.Row="3" Source="arrow_blue_right_80.png" IsVisible="{Binding Paused}" Command="{Binding ResumeGameCommand}"/>
-        <ImageButton Grid.Column="2" Grid.Row="5" Source="arrow_blue_right_80.png" Rotation="90" IsVisible="{Binding MoveButtonsAvailable}" Command="{Binding TP1RCommand}"/>
+        <ImageButton Grid.Column="2" Grid.Row="5" Source="arrow_blue_left_80.png" Rotation="-90" IsVisible="{Binding MoveButtonsAvailable}" Command="{Binding TP1LCommand}"/>
     </Grid>
 </ContentPage>
