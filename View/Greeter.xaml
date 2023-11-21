@@ -30,7 +30,7 @@
             <Button Text="Play 12x12" HorizontalOptions="Center" Padding="35,0" FontSize="Title" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="1" Margin="10" Command="{Binding ToGame12x12Command}" IsEnabled="{Binding Loading,Converter={converter:Negate}}"/>
             <Button Text="Play 24x24" HorizontalOptions="Center" Padding="35,0" FontSize="Title" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="2" Margin="10" Command="{Binding ToGame24x24Command}" IsEnabled="{Binding Loading,Converter={converter:Negate}}"/>
             <Button Text="Play 36x36" HorizontalOptions="Center" Padding="35,0" FontSize="Title" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="3" Margin="10" Command="{Binding ToGame36x36Command}" IsEnabled="{Binding Loading,Converter={converter:Negate}}"/>
-            <Button Text="Load Save" HorizontalOptions="Center" Padding="35,0" FontSize="Title" Command="{Binding}" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="4" Margin="10" IsEnabled="{Binding Loading,Converter={converter:Negate}}"/>
+            <Button Text="Load Saved" HorizontalOptions="Center" Padding="35,0" FontSize="Title" Command="{Binding LoadSavedCommand}" BackgroundColor="{x:StaticResource PrimaryDarkText}" FontAttributes="Bold" TextColor="{x:StaticResource White}" Grid.Row="4" Margin="10" IsEnabled="{Binding Loading,Converter={converter:Negate}}"/>
         </Grid>
     </HorizontalStackLayout>
 </ContentPage>

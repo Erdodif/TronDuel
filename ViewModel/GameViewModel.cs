@@ -7,6 +7,8 @@ using Map = TronLightCycle.GameObjects.BoardElements.Map;
 using Game = TronLightCycle.GameObjects.Game;
 using Color = System.Drawing.Color;
 using TronLightCycle.GameObjects.BoardElements;
+using System.Text.Json;
+using System.Text;
 
 namespace TronDuel.ViewModel;
 
@@ -22,9 +24,11 @@ public partial class GameViewModel : ObservableObject
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CountDownOn))]
     private int countDown = 0;
-    #endregion
 
     #region Toogles
+    [ObservableProperty]
+    private bool fresh = true;
+
     [ObservableProperty]
     private bool paused = true;
     [ObservableProperty]
@@ -33,6 +37,7 @@ public partial class GameViewModel : ObservableObject
     private bool loadable = true;
 
     public bool CountDownOn { get => CountDown != 0; }
+    #endregion
     #endregion
 
     #region Command
@@ -48,6 +53,7 @@ public partial class GameViewModel : ObservableObject
         CountDown = 0;
         this.OnPropertyChanged(nameof(CountDownOn));
         _ = Task.Run(game.Start);
+        Fresh = false;
         Paused = false;
         Loadable = false;
         MoveButtonsAvailable = true;
@@ -68,28 +74,9 @@ public partial class GameViewModel : ObservableObject
         if (game.State == GameState.Ongoing) return;
         this.game.ResetGame();
         Paused = true;
+        Fresh = true;
         MoveButtonsAvailable = false;
     }
-    
-    
-    //OBSOLETE
-    [RelayCommand]
-    private async Task Resize(MapSize mapSize)
-    {
-        if (game.State == GameState.Ongoing) return;
-        await Task.Run(() =>
-        {
-            this.game.Resize((int)mapSize);
-            MapViewModel = new MapViewModel(game.Map);
-            OnPropertyChanged(nameof(MapViewModel));
-        });
-        Application.Current!.Dispatcher.Dispatch(() =>
-        {
-            Paused = true;
-            MoveButtonsAvailable = false;
-        });
-    }
-
 
     [RelayCommand]
     private void TP1L() => game.PrepareTurnPlayer(game.Players[0], TurnDirection.Left);
@@ -99,6 +86,43 @@ public partial class GameViewModel : ObservableObject
     private void TP2L() => game.PrepareTurnPlayer(game.Players[1], TurnDirection.Left);
     [RelayCommand]
     private void TP2R() => game.PrepareTurnPlayer(game.Players[1], TurnDirection.Right);
+
+    [RelayCommand]
+    private async Task SaveGame()
+    {
+        var page = Application.Current!.MainPage!;
+        string name = $"savegame_{DateTime.Now.DayOfYear}_{DateTime.Now.Hour}_{DateTime.Now.Minute}";
+        name = await page.DisplayPromptAsync("Save game", "give a name", initialValue: name);
+        var invalids = Path.GetInvalidFileNameChars();
+        StringBuilder boby = new();
+        foreach (var item in name)
+        {
+            if(!invalids.Contains(item)) boby.Append(item);
+        }
+        name = boby.ToString();
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        if(!Path.Exists(path)) Directory.CreateDirectory(path);
+        if (File.Exists(Path.Combine(path, name + ".tron.savedgame")) && !await page.DisplayAlert("Savefile exists", "This name is occupied.\nDo you want to overrite it?", "On god", "God no"))
+        {
+            return;
+        }
+        try
+        {
+            File.WriteAllText(Path.Combine(path, name + ".tron.savedgame"), JsonSerializer.Serialize(this.Game));
+            await page.DisplayAlert("Game saved","This will wait until you have more time","okay, okay");
+            App.Current.Quit();
+        }
+        catch
+        {
+            await page.DisplayAlert("Something went horribly wrong", "🥰", "boi");
+        }
+    }
+
+    [RelayCommand]
+    private void Exit()
+    {
+        Application.Current?.Quit();
+    }
     #endregion
 
     #region Game Events
@@ -136,6 +160,15 @@ public partial class GameViewModel : ObservableObject
 
     #region Constructor
 
+    public GameViewModel(Game game)
+    {
+        this.game = game;
+        game.Pause();
+        mapViewModel = new MapViewModel(game.Map);
+        game.UpdateEvent += GameUpdated;
+        game.EndEvent += GameEnded;
+    }
+
     public GameViewModel(MapSize mapSize)
     {
         Player.ClearPlayerList();
@@ -144,6 +177,7 @@ public partial class GameViewModel : ObservableObject
         game.UpdateEvent += GameUpdated;
         game.EndEvent += GameEnded;
     }
+
 
     public GameViewModel() : this(MapSize.x12) { }
 

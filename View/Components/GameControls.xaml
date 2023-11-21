@@ -21,11 +21,11 @@
             Grid.Row="1"
             IsVisible="{Binding CountDownOn}"/>
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
-            <Button Text="Load" Grid.Column="1" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}"/>
+            <Button Text="Exit" Grid.Column="1" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}" Command="{Binding ExitCommand}"/>
             <Button
-            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
+            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" Command="{Binding SaveGameCommand}"/>
             <Button
-            Grid.Row="4" Text="Shake" Command="{Binding ShuffleCommand}" IsVisible="{Binding Loadable}" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
+            Grid.Row="4" Text="Shake" Command="{Binding ShuffleCommand}" IsVisible="{Binding Fresh}" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentView>
