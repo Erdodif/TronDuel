@@ -25,9 +25,13 @@ public partial class GameViewModel : ObservableObject
     #endregion
 
     #region Toogles
-    public bool Paused { get => game.State == GameState.Paused || game.State == GameState.Fresh; }
-    public bool MoveButtonsAvailable { get => game.State == GameState.Ongoing; }
-    public bool Loadable { get => game.State == GameState.Fresh; }
+    [ObservableProperty]
+    private bool paused = true;
+    [ObservableProperty]
+    private bool moveButtonsAvailable = false;
+    [ObservableProperty]
+    private bool loadable = true;
+
     public bool CountDownOn { get => CountDown != 0; }
     #endregion
 
@@ -35,9 +39,6 @@ public partial class GameViewModel : ObservableObject
     [RelayCommand]
     private async Task ResumeGame()
     {
-        this.OnPropertyChanging(nameof(Paused));
-        this.OnPropertyChanging(nameof(Loadable));
-        this.OnPropertyChanging(nameof(MoveButtonsAvailable));
         CountDown = 3;
         await Task.Delay(1000);
         CountDown = 2;
@@ -45,20 +46,20 @@ public partial class GameViewModel : ObservableObject
         CountDown = 1;
         await Task.Delay(1000);
         CountDown = 0;
-        _ = Task.Run(game.Start);
-        this.OnPropertyChanged(nameof(Paused));
-        this.OnPropertyChanged(nameof(Loadable));
-        this.OnPropertyChanged(nameof(MoveButtonsAvailable));
         this.OnPropertyChanged(nameof(CountDownOn));
+        _ = Task.Run(game.Start);
+        Paused = false;
+        Loadable = false;
+        MoveButtonsAvailable = true;
     }
 
     [RelayCommand]
     private void Pause()
     {
         game.Pause();
-        this.OnPropertyChanged(nameof(Paused));
-        this.OnPropertyChanged(nameof(MoveButtonsAvailable));
-        this.OnPropertyChanged(nameof(CountDownOn));
+        Paused = true;
+        Loadable = true;
+        MoveButtonsAvailable = false;
     }
 
     [RelayCommand]
@@ -80,6 +81,8 @@ public partial class GameViewModel : ObservableObject
 
     private void GameEnded(Player? player)
     {
+        MoveButtonsAvailable = false;
+        Loadable = false;
         if (player is null)
         {
             Application.Current?.Dispatcher.Dispatch(async () =>
@@ -104,7 +107,7 @@ public partial class GameViewModel : ObservableObject
     public GameViewModel(MapSize mapSize)
     {
         Player.ClearPlayerList();
-        game = new Game((int)mapSize, 500, new Player("Blue", Color.BlueViolet), new Player("Red", Color.IndianRed));
+        game = new Game((int)mapSize, 800, new Player("Blue", Color.BlueViolet), new Player("Red", Color.IndianRed));
         mapViewModel = new MapViewModel(game.Map);
         game.UpdateEvent += (m, hm) => _ = GameUpdated(m, hm);
         game.EndEvent += GameEnded;
