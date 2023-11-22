@@ -18,14 +18,15 @@
             HorizontalOptions="Center"
             TextColor="{StaticResource Secondary}"
             FontSize="80"
+            FontAttributes="Bold"
             Grid.Row="1"
             IsVisible="{Binding CountDownOn}"/>
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
-            <Button Text="Exit" Grid.Column="1" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}" Command="{Binding ExitCommand}"/>
+            <Button Text="Exit" Grid.Column="1" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" IsVisible="{Binding Loadable}" Command="{Binding ExitCommand}" Opacity="0.7"/>
             <Button
-            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" Command="{Binding SaveGameCommand}"/>
+            Grid.Row="4" Text="Save" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" Command="{Binding SaveGameCommand}" Opacity="0.7"/>
             <Button
-            Grid.Row="4" Text="Shake" Command="{Binding ShuffleCommand}" IsVisible="{Binding Fresh}" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0"/>
+            Grid.Row="4" Text="Shake" Command="{Binding ShuffleCommand}" IsVisible="{Binding Fresh}" Grid.Column="3" TextColor="{StaticResource White}" FontAttributes="Bold" FontSize="24" Padding="20,5" Margin="20,0" Opacity="0.7"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentView>

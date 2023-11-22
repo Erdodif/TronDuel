@@ -8,5 +8,9 @@ public partial class Game : ContentPage
     {
         BindingContext = vms.GameViewModel;
         InitializeComponent();
+        Map.SizeChanged += (_, _) =>
+        {
+            Dispatcher.Dispatch(() => { Map.WidthRequest = Map.Height; Map.ForceLayout(); });
+        };
     }
 }

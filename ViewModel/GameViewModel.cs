@@ -14,6 +14,7 @@ namespace TronDuel.ViewModel;
 
 public partial class GameViewModel : ObservableObject
 {
+    private static readonly int GAME_SPEED = 250;
     #region Properties
     private Game game;
     public Game Game { get => game; }
@@ -172,7 +173,7 @@ public partial class GameViewModel : ObservableObject
     public GameViewModel(MapSize mapSize)
     {
         Player.ClearPlayerList();
-        game = new Game((int)mapSize, 800, new Player("Blue", Color.BlueViolet), new Player("Red", Color.IndianRed));
+        game = new Game((int)mapSize, GAME_SPEED, new Player("Blue", Color.BlueViolet), new Player("Red", Color.IndianRed));
         mapViewModel = new MapViewModel(game.Map);
         game.UpdateEvent += GameUpdated;
         game.EndEvent += GameEnded;
