@@ -114,9 +114,9 @@ namespace TronDuel.Model.Tests
 
 
         [Fact]
-        public void MapSerializedProperlyEmpty()
+        public void MapSerializeEmptyException()
         {
-            Assert.Equal("{\"Coordinates\":[]}", JsonSerializer.Serialize(new Map([])));
+            Assert.Throws<InvalidOperationException>(() => JsonSerializer.Serialize(new Map([])));
         }
 
         [Fact]
